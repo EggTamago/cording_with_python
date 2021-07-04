@@ -4,8 +4,6 @@ from pydantic import BaseModel
 
 from typing import Optional
 
-from calc import plus 
-
 app = FastAPI()
 
 
