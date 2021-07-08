@@ -1,5 +1,8 @@
-# 画像アップロードアプリ
+# Streamlit App
 
+>https://streamlit.io/
+
+## Run following command
 ```
-streamlit main.py
+streamlit run main.py
 ```
