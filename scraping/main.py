@@ -1,5 +1,6 @@
 from urllib import request
 from bs4 import BeautifulSoup
+import time
 
 import tqdm
 
@@ -39,6 +40,7 @@ for target in tqdm.tqdm(form):
 
         # target_url初期化
         target_url = s1_url + target
+        time.sleep(5)
 
 s1_list = list(set(s1_list))
 print(s1_list)
