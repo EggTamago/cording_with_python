@@ -1,14 +1,13 @@
-import { React, useState } from 'react'
+import { React } from 'react'
 import { Button, Grid } from '@material-ui/core';
 
 import axios from 'axios'
-
 
 import '../css/App.css';
 
 const App = () => {
 
-  const server = 'http://localhost:8000/';
+  const server = 'http://localhost:4040/';
   const fastapi = (e) => {
       console.log('start http communicate')
       axios.get(server)
