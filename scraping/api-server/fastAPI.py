@@ -2,6 +2,8 @@ from fastapi import FastAPI
 import uvicorn
 from starlette.middleware.cors import CORSMiddleware
 
+import db
+
 app = FastAPI()
 
 # for slove CORS
@@ -12,6 +14,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+@app.on_event("startup")
+async def startup():
+    await db.connect()
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
 
 # curl http://localhost:4040/
 @app.get("/")
