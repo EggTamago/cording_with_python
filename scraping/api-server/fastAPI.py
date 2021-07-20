@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 from starlette.middleware.cors import CORSMiddleware
 
-import db
+from db import database
 
 app = FastAPI()
 
@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup():
-    await db.connect()
+    await database.connect()
 
 @app.on_event("shutdown")
 async def shutdown():
