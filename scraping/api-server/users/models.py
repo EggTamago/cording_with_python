@@ -1,12 +1,14 @@
-import sqlalchemy
+from sqlalchemy.schema import Column, Table
+from sqlalchemy.types import Integer, String
+
 from db import metadata, engine
 
-users = sqlalchemy.Table(
-    "users",
+users = Table(
+    __tablename__="test",
     metadata,
-    sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True, index=True),
-    sqlalchemy.Column("name", sqlalchemy.String, index=True),
-    sqlalchemy.Column("string", sqlalchemy.Boolean(), default=False)
+    Column("id", Integer, primary_key=True, index=True),
+    Column("num", Integer),
+    Column("data", String)
 )
 
 metadata.create_all(bind=engine)
