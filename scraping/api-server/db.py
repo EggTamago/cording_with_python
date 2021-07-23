@@ -7,7 +7,7 @@ import  sqlalchemy
 # 参考：https://fastapi.tiangolo.com/advanced/async-sql-databases/
 #============================
 
-DATABASE = 'mydb'
+DATABASE = 'postgresql'
 USER = 'admin'
 PASSWORD = 'password'
 HOST = '192.168.30.1'
