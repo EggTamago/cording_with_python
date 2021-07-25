@@ -6,7 +6,7 @@ class UserBase(BaseModel):
     num: int
     data: str
 
-class User(UserBase):
+class Users(UserBase):
     id: int
 
     class Config:

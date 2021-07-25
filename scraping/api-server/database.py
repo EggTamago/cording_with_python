@@ -20,10 +20,12 @@ DB_NAME =  'mydb'
 SQLALCHEMY_DATABASE_URL = f'{DATABASE}://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}'
 
 # databases
-database = databases.Database(SQLALCHEMY_DATABASE_URL, min_size=5, max_size=20)
+# database = databases.Database(SQLALCHEMY_DATABASE_URL, min_size=5, max_size=20)
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+# モデルクラスを作る(テーブル定義)
+# models.pyでBaseを継承してテーブルの定義を行う
 Base = declarative_base()

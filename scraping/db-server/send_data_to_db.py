@@ -14,12 +14,8 @@ cursor = conn.cursor()
 #Preparing query to create a database
 # db名に「user」は不可
 sql = '''
-        INSERT INTO users (
-        user_id      1,
-        first_name   tamago,
-        last_name    egg,
-        age          2000
-        );
+        INSERT INTO users (user_id, first_name, last_name, age)
+        VALUES (0, 'tamago', 'egg', 200);
      '''
 
 #Creating a database

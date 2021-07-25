@@ -9,9 +9,10 @@ from sqlalchemy.types import Integer, String
 
 from .database import Base
 
-class Test(Base):
-    __tablename__="test"
+class Users(Base):
+    __tablename__="users"
 
-    id = Column(Integer, index=True, primary_key=True),
-    num = Column(Integer, primary_key=True),
-    data = Column(String, primary_key=True)
+    user_id = Column(Integer, primary_key=True)
+    first_name = Column(String(250))
+    last_name = Column(String(250))
+    age = Column(Integer)
