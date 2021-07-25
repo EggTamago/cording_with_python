@@ -12,13 +12,14 @@ conn.autocommit = True
 cursor = conn.cursor()
 
 #Preparing query to create a database
+# db名に「user」は不可
 sql = '''
-        CREATE TABLE TestTable (
-        pageNo   integer Not Null ,
-        typeName VARCHAR (250),
-        count    INTEGER,
-        data     TEXT,
-        CONSTRAINT TestTable_pkey PRIMARY KEY (pageNo)
+        CREATE TABLE users (
+        user_id      integer Not Null ,
+        first_name   VARCHAR (250),
+        last_name    VARCHAR (250),
+        age          INTEGER,
+        CONSTRAINT users_pkey PRIMARY KEY (user_id)
         );
      '''
 
