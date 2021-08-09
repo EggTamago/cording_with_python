@@ -14,12 +14,11 @@ cursor = conn.cursor()
 #Preparing query to create a database
 # db名に「user」は不可
 sql = '''
-        CREATE TABLE users (
-        user_id      integer Not Null ,
-        first_name   VARCHAR (250),
-        last_name    VARCHAR (250),
-        age          INTEGER,
-        CONSTRAINT users_pkey PRIMARY KEY (user_id)
+        CREATE TABLE actors (
+        user_id      integer Not Null,
+        label        VARCHAR (250),
+        actor_name    VARCHAR (250),
+        CONSTRAINT actors_pkey PRIMARY KEY (user_id)
         );
      '''
 
