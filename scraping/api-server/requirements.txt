@@ -2,3 +2,4 @@ asyncpg
 fastapi
 databases
 uvicorn
+psycopg2

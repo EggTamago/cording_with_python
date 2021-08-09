@@ -9,10 +9,9 @@ from sqlalchemy.types import Integer, String
 
 from .database import Base
 
-class Users(Base):
-    __tablename__="users"
+class Actors(Base):
+    __tablename__="actors"
 
     user_id = Column(Integer, primary_key=True)
-    first_name = Column(String(250))
-    last_name = Column(String(250))
-    age = Column(Integer)
+    label = Column(String(250))
+    actor_name = Column(String(250))
