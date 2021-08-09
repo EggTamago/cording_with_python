@@ -13,7 +13,7 @@ const App = () => {
   const fastapi = () => {
       console.log('start http communicate')
       axios.get(server)
-        .then(res => setName(res.data[0]))
+        .then(res => setName(res.data))
         .catch(console.error)
   }
 
