@@ -1,3 +1,6 @@
+#!/usr/bin/env python2
+# -*-coding:utf-8 -*-
+
 from fastapi import Depends, FastAPI, HTTPException
 import uvicorn
 from starlette.middleware.cors import CORSMiddleware
