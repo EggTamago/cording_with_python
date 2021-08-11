@@ -1,6 +1,8 @@
 import React, { Component, useState } from "react";
 import { useDropzone } from 'react-dropzone';
 
+import DropArea from "./DropArea";
+
 import '../css/App.css';
 
 const App = () => {
@@ -15,17 +17,13 @@ const App = () => {
       </header>
 
       <main className="App-main">
-
-        <div>
-          <p>upload image 1</p>
-        </div>
-
-        <div>
-          <p>upload image 2</p>
-        </div>
-      
+        <DropArea />
       </main>
+      
+      {/* send 2 photos to API server */}
+      <button />
 
+      {/* get result from API server and indicate the result */}
       <footer>
 
       </footer>
