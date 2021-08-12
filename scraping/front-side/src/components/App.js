@@ -3,6 +3,8 @@ import { Button, Grid } from '@material-ui/core';
 
 import axios from 'axios'
 
+import StarRating from './StarRating'
+
 import '../css/App.css';
 
 const App = () => {
@@ -26,6 +28,8 @@ const App = () => {
     <Button onClick={() =>fastapi()} variant="contained" color="primary">push me</Button>
 
     <p>Today is ...  {name} </p>
+
+    <StarRating />
 
     </Grid>
   )
