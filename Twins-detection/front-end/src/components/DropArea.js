@@ -1,5 +1,6 @@
-import React, { Component, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDropzone } from 'react-dropzone'
+
 
 const style = {
   width: 300,
@@ -11,21 +12,34 @@ const style = {
 
 const DropArea = () => {
 
+  const [srcUrl, setSrcUrl] = useState(null)
+
+  // using FileReader API and preview images
   const onDrop = useCallback(acceptedFiles => {
-    // save the image to send API server
-    // need using FileReader API and preview images
-    console.log('acceptedFiles:', acceptedFiles)
+
+    acceptedFiles.forEach((file) => {
+      const reader = new FileReader()
+
+      reader.onabort = () => console.log('file reading was aborted')
+      reader.onerror = () => console.log('file reading has failed')
+      reader.onload = (e) => {
+
+        
+      }
+      reader.readAsArrayBuffer(file)
+    })
   }, [])
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   return (
     <>
       <div {...getRootProps()} style={style}>
         <input {...getInputProps()} />
-        {
-          isDragActive ? <p>drop!</p> : <p>drop image</p>
-        }
+        { isDragActive ? <p>drop!!!</p> : <p>put image here</p> }
+        { console.log(srcUrl)}
       </div>
+      
     </>
   )
 }

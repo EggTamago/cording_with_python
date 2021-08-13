@@ -1,14 +1,11 @@
-import React, { Component, useState } from "react";
-import { useDropzone } from 'react-dropzone';
+import React from "react";
 import { Button } from '@material-ui/core';
 
-import DropArea from "./DropArea";
+import Preview from "./Preview";
 
 import '../css/App.css';
 
 const App = () => {
-
-  const [image, setImage] = useState(null)
 
   return (
     <div className="App">
@@ -18,8 +15,8 @@ const App = () => {
       </header>
 
       <main className="App-main">
-        <DropArea />
-        <DropArea />
+        <Preview />
+        <Preview />
       </main>
       
       {/* send 2 photos to API server */}
