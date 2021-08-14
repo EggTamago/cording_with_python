@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from '@material-ui/core';
 
 import Preview from "./Preview";
 
@@ -16,14 +15,7 @@ const App = () => {
 
       <main className="App-main">
         <Preview />
-        <Preview />
       </main>
-      
-      {/* send 2 photos to API server */}
-      {/* if there is no 2 photos, show error */}
-      <Button variant="contained" color="secondary">
-        Check Twin or Not!
-      </Button>
 
       {/* get result from API server and indicate the result */}
       <footer>
