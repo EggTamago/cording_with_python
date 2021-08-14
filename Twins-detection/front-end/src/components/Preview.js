@@ -10,11 +10,15 @@ const Preview = () => {
 
     // fileUrl is for preview image
     const [fileUrl, setFileUrl] = useState(null)
-    const [image, setImage] = useState(null)
+    // image is for send API server
+    const [imageList, setImageList] = useState(null)
+    // response is for get response from API server
+    const [response, setResponse] = useState(null)
 
-    const preview = e => {
+    const preview = (e) => {
         const imageFile = e.target.files[0]
-        setImage(imageFile)
+        setImageList(e.target.files)
+        console.log(e.target.files.length)
         const imageUrl = URL.createObjectURL(imageFile)
         setFileUrl(imageUrl)
     }
@@ -24,21 +28,19 @@ const Preview = () => {
     const submit = (e) => {
         e.preventDefault()
         const formData = new FormData()
-        formData.append("image", image)
+        formData.append("image", imageList[0])
         axios.post(server, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
-            .then(res => console.log(res))
+            .then(res => setResponse(res.data))
             .catch(console.error)
     }
 
     return (
         <>
             <form>
-                <label>
-                    <div style={style}>
-                        <input type="file" name="file" onChange={preview} />
-                        <input type="submit" value="submit" onClick={submit} />
-                    </div>
-                </label>
+                <div style={style}>
+                    <input type="file" name="image" onChange={preview} multiple />
+                    <input type="submit" value="submit" onClick={submit} />
+                </div>
                 <div style={style}>
                     <img src={fileUrl} height="300" width="300" alt="" />
                 </div>
