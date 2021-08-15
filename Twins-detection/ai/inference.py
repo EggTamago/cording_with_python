@@ -9,20 +9,19 @@ import glob
 import re
 import os
 
-from . import similality
+from . import similarity
 
 def face_similarity():
-    
-
+    result = similarity.facenet()
+    return result
 
 def file_delete():
-
-    pathes = glob.glob('images/*.jpg')
+    pathes = glob.glob('/root/enjoy_cording_with_python/Twins-detection/ai/images/*.jpg')
     for path in pathes:
         result = os.remove(path)
 
 def infer():
-    return 'ok'
-
-if __name__ == '__main__':
+    result = face_similarity()
     file_delete()
+
+    return str(result)

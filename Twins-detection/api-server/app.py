@@ -1,9 +1,12 @@
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
-import json
 from werkzeug.utils import secure_filename
 import pykakasi
 import os
+
+import sys
+sys.path.append('../')
+from ai import inference
 
 app = Flask(__name__)
 CORS(app)
@@ -18,13 +21,15 @@ def upload():
     if request.method == 'GET':
         return 
     elif request.method == 'POST':
-        print("---------------------------------------")
-        print(vars(request))
-        print()
-        file = request.files['image']
-        save_filename = secure_filename(file.filename)
-        file.save(os.path.join('./images', save_filename))
-        return 'get file !'
+        for id, file in request.files.items():
+            file = request.files[str(id)]
+            # save_filename = secure_filename(file.filename)
+            save_filename = id + '.jpg'
+            file.save(os.path.join('../ai/images', save_filename))
+
+        inference_result = inference.infer()
+
+        return inference_result
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=4040)
