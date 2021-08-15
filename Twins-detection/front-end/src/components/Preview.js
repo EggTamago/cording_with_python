@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import axios from 'axios'
 
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import '../css/App.css'
 
 const style = {
@@ -13,7 +13,7 @@ const Preview = () => {
 
     const [fileUrl, setFileUrl] = useState([])  // fileUrl is for preview image
     const [imageList, setImageList] = useState(null)  // image is for send API server
-    const [response, setResponse] = useState(null)  // response is for get response from API server
+    const [response, setResponse] = useState(0)  // response is for get response from API server
 
     const preview = (e) => {
         // setImageList is for send data to API server
@@ -42,22 +42,22 @@ const Preview = () => {
         <div>
             <form>
                 <div style={style}>
-                    <input type="file" name="image" onChange={preview} multiple="multiple" />
+                    <input class="form-control" type="file" name="image" onChange={preview} multiple="multiple" />
                 </div>
 
                 <div>
-                    <img src={fileUrl[0]} height="300" width="300" alt="" />
-                    <img src={fileUrl[1]} height="300" width="300" alt="" />
+                    <img src={fileUrl[0]} height="300" width="400" alt="" />
+                    <img src={fileUrl[1]} height="300" width="400" alt="" />
                 </div>
 
                 <div>
-                    <input type="submit" value="submit" onClick={submit} />
+                    <input type="submit" value="submit" class="btn mb-3 mt-3 btn-lg btn-block btn-outline-light" onClick={submit} />
                 </div>
             </form>
 
             {/* get result from API server and indicate the result */}
             <footer style={style}>
-                <p> {response} </p>
+                <p> Twin score : {response} %</p>
             </footer>
         </div>
     )

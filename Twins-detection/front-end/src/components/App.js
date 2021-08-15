@@ -10,7 +10,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>Twin or Not</h1>
-        <p>upload two photos and estimate Twin or Not</p>
+        <p>upload 2 photos and estimate Twin or Not</p>
       </header>
 
       <main className="App-main">
