@@ -16,11 +16,6 @@ const App = () => {
       <main className="App-main">
         <Preview />
       </main>
-
-      {/* get result from API server and indicate the result */}
-      <footer>
-        footer. show result
-      </footer>
     </div>
   );
 }
