@@ -9,7 +9,7 @@ const style = {
 const Preview = () => {
 
     // fileUrl is for preview image
-    const [fileUrl, setFileUrl] = useState(null)
+    const [fileUrl, setFileUrl] = useState([])
     // image is for send API server
     const [imageList, setImageList] = useState(null)
     // response is for get response from API server
@@ -20,7 +20,8 @@ const Preview = () => {
         setImageList(e.target.files)
         console.log(e.target.files.length)
         const imageUrl = URL.createObjectURL(imageFile)
-        setFileUrl(imageUrl)
+        setFileUrl([...fileUrl, imageUrl])
+        console.log(imageUrl)
     }
 
     const server = 'http://127.0.0.1:4040/upload'
@@ -38,11 +39,12 @@ const Preview = () => {
         <>
             <form>
                 <div style={style}>
-                    <input type="file" name="image" onChange={preview} multiple />
+                    <input type="file" name="image" onChange={preview} multiple="multiple" />
                     <input type="submit" value="submit" onClick={submit} />
                 </div>
+                
                 <div style={style}>
-                    <img src={fileUrl} height="300" width="300" alt="" />
+                    <img src={fileUrl[0]} height="300" width="300" alt="" />
                 </div>
             </form>
         </>
