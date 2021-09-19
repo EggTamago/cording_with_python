@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -23,21 +24,28 @@ function Copyright(props) {
             {new Date().getFullYear()}
             {'.'}
         </Typography>
+
     );
 }
 
 const theme = createTheme();
 
 const SignIn = () => {
-    const handleSubmit = (event) => {
+
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+
+
+    const server = 'http://127.0.0.1:4040/users/me'
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+        const data = { username, password }
+        console.log(data)
+        await axios.post(server, data, { headers: { 'Content-Type': 'application/json' } })
+            .then(res => console.log(res))
+            .catch(console.error)
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -62,11 +70,12 @@ const SignIn = () => {
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
+                            id="username"
+                            label="User name"
+                            name="username"
+                            autoComplete="username"
                             autoFocus
+                            value={username} onChange={e => setUsername(e.target.value)}
                         />
                         <TextField
                             margin="normal"
@@ -77,6 +86,7 @@ const SignIn = () => {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value={password} onChange={e => setPassword(e.target.value)}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
