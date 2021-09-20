@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import { UserContext } from '../context/UserContext';
 
 function Copyright(props) {
     return (
@@ -35,15 +37,15 @@ const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+    const { setToken } = useContext(UserContext)
 
-    const server = 'http://127.0.0.1:4040/users/me'
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const loginAPI = 'http://127.0.0.1:4040/login'
         const data = { username, password }
         console.log(data)
-        await axios.post(server, data, { headers: { 'Content-Type': 'application/json' } })
-            .then(res => console.log(res))
+        await axios.post(loginAPI, data, { headers: { 'Content-Type': 'application/json' } })
+            .then(res => setToken(res.data))
             .catch(console.error)
     }
 
