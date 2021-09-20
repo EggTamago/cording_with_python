@@ -1,16 +1,22 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
 import Login from "./Login"
-import Logout from './Logout'
+import Home from './Home'
 import UserProvider from '../context/UserContext'
+import { UserContext } from '../context/UserContext'
 
 const App = () => {
+
+  const token = useContext(UserContext)
+
   return (
     <>
-      <UserProvider>
-        <Login />
-      </UserProvider>
+      <Router>
+        <UserProvider>
+          <Route path="/" element={<Login />} />
+        </UserProvider>
+      </Router>
     </>
   )
 }

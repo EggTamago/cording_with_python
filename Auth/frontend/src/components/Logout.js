@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from '@material-ui/core/Button';
 
 import axios from 'axios'
 
+import { UserContext } from '../context/UserContext'
+
 const Logout = () => {
+
+    const { setToken } = useContext(UserContext)
 
     const handleLogout = async (e) => {
         e.preventDefault()
         const logoutAPI = 'http://127.0.0.1:4040/logout'
         await axios.delete(logoutAPI)
-            .then(res => console.log(res))
+            .then(res => setToken(""))
             .catch(console.error)
     }
     return (
-
 
         <div>
             <Button variant="contained" color="primary" onClick={handleLogout}>
