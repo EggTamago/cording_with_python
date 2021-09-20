@@ -3,3 +3,4 @@ uvicorn
 passlib
 SQLAlchemy
 pyjwt
+fastapi-jwt-auth

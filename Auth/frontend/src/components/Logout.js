@@ -13,6 +13,8 @@ const Logout = () => {
             .catch(console.error)
     }
     return (
+
+
         <div>
             <Button variant="contained" color="primary" onClick={handleLogout}>
                 Logout
