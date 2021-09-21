@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Login from "./Login"
 import Home from './Home'
@@ -12,11 +12,12 @@ const App = () => {
 
   return (
     <>
-      <Router>
-        <UserProvider>
-          <Route path="/" element={<Login />} />
-        </UserProvider>
-      </Router>
+      <UserProvider>
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route path='/home' component={Home} />
+        </Switch>
+      </UserProvider>
     </>
   )
 }
