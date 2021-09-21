@@ -13,7 +13,7 @@ const Logout = () => {
         e.preventDefault()
         const logoutAPI = 'http://127.0.0.1:4040/logout'
         await axios.delete(logoutAPI)
-            .then(res => setToken(""))
+            .then(res => setToken(null))
             .catch(console.error)
     }
     return (

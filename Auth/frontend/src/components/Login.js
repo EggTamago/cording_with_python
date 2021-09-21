@@ -43,7 +43,6 @@ const Login = () => {
         e.preventDefault();
         const loginAPI = 'http://127.0.0.1:4040/login'
         const data = { username, password }
-        console.log(data)
         await axios.post(loginAPI, data, { headers: { 'Content-Type': 'application/json' } })
             .then(res => setToken(res.data))
             .catch(console.error)

@@ -8,15 +8,28 @@ import { UserContext } from '../context/UserContext'
 
 const App = () => {
 
-  const token = useContext(UserContext)
+  const adminUser = {
+    username: "test",
+    password: "test"
+  }
 
+
+  const { token } = useContext(UserContext)
+  console.log({ token })
   return (
     <>
-      <UserProvider>
-        <Switch>
+      <UserProvider value={{ token }}>
+        {(token == null) ? (
+          <Login />
+        ) : (
+          <Home />
+        )}
+
+
+        {/* {        <Switch>
           <Route exact path='/' component={Login} />
           <Route path='/home' component={Home} />
-        </Switch>
+        </Switch>} */}
       </UserProvider>
     </>
   )
