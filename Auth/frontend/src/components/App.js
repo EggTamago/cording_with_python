@@ -15,22 +15,20 @@ const App = () => {
 
 
   const { token } = useContext(UserContext)
-  console.log({ token })
+
   return (
     <>
-      <UserProvider value={{ token }}>
-        {(token == null) ? (
-          <Login />
-        ) : (
-          <Home />
-        )}
+      {(token == null) ? (
+        <Login />
+      ) : (
+        <Home />
+      )}
 
 
-        {/* {        <Switch>
+      {/* {        <Switch>
           <Route exact path='/' component={Login} />
           <Route path='/home' component={Home} />
         </Switch>} */}
-      </UserProvider>
     </>
   )
 }

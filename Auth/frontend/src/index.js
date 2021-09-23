@@ -3,12 +3,15 @@ import { render } from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 import App from './components/App'
+import UserProvider from './context/UserContext'
 import reportWebVitals from './reportWebVitals'
 
 render(
-  <Router>
-    <App />
-  </Router>,
+  <UserProvider>
+    <Router>
+      <App />
+    </Router>
+  </UserProvider>,
   document.getElementById('root')
 )
 
