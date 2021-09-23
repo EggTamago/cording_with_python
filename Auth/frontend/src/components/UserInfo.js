@@ -5,35 +5,31 @@ import axios from 'axios'
 
 import { UserContext } from '../context/UserContext'
 
-const Logout = () => {
+const UserInfo = () => {
 
-    const { token, setToken } = useContext(UserContext)
+    const { token } = useContext(UserContext)
 
-
-
-    const handleLogout = async (e) => {
+    const handleGetUserInfo = async (e) => {
         e.preventDefault()
-        const logoutAPI = 'http://127.0.0.1:4040/logout'
-        console.log(token)
-
-        await axios.delete(logoutAPI,
+        const userAPI = 'http://127.0.0.1:4040/user'
+        await axios.get(userAPI,
             {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 }
             })
-            .then(res => setToken(null))
+            .then(res => console.log(res))
             .catch(console.error)
     }
     return (
 
         <div>
-            <Button variant="contained" color="primary" onClick={handleLogout}>
-                Logout
+            <Button variant="contained" color="primary" onClick={handleGetUserInfo}>
+                userInfo
             </Button>
         </div>
     )
 }
 
-export default Logout
+export default UserInfo

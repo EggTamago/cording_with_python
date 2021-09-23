@@ -33,11 +33,11 @@ class User(BaseModel):
 class Settings(BaseModel):
     authjwt_secret_key: str = "secret"
     # Configure application to store and get JWT from cookies
-    authjwt_token_location: set = {"cookies"}
+    # authjwt_token_location: set = {"cookies"}
     # Only allow JWT cookies to be sent over https
-    authjwt_cookie_secure: bool = False
+    # authjwt_cookie_secure: bool = False
     # Enable csrf double submit protection. default is True
-    authjwt_cookie_csrf_protect: bool = True
+    # authjwt_cookie_csrf_protect: bool = True
     # Change to 'lax' in production to make your website more secure from CSRF Attacks, default is None
     # authjwt_cookie_samesite: str = 'lax'
 
@@ -67,7 +67,7 @@ def login(user: User, Authorize: AuthJWT = Depends()):
     access_token = Authorize.create_access_token(subject=user.username)
 
     # Set the JWT cookies in the response
-    Authorize.set_access_cookies(access_token)
+    # Authorize.set_access_cookies(access_token)
     return access_token
 
 
@@ -80,7 +80,6 @@ def logout(Authorize: AuthJWT = Depends()):
     """
     Authorize.jwt_required()
 
-    Authorize.unset_jwt_cookies()
     return {"msg":"Successfully logout"}
 
 # protect endpoint with function jwt_required(), which requires

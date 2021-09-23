@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Login from "./Login"
 import Home from './Home'
-import UserProvider from '../context/UserContext'
 import { UserContext } from '../context/UserContext'
 
 const App = () => {
