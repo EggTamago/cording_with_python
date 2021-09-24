@@ -14,7 +14,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../context/UserContext'
+import { useCookies } from 'react-cookie'
+
+axios.defaults.withCredentials = true
 
 function Copyright(props) {
     return (
@@ -36,15 +39,23 @@ const Login = () => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [cookie, setCookie] = useCookies(["jwt"])
 
     const { setToken } = useContext(UserContext)
+
+    const setResponse = (res) => {
+        setToken(res.data)
+        setCookie("jwt", res.data, { path: '/', httpOnly: true })
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const loginAPI = 'http://127.0.0.1:4040/login'
         const data = { username, password }
-        await axios.post(loginAPI, data, { headers: { 'Content-Type': 'application/json' } })
-            .then(res => setToken(res.data))
+        await axios.post(loginAPI, data, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => setResponse(res))
             .catch(console.error)
     }
 

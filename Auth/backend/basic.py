@@ -33,13 +33,13 @@ class User(BaseModel):
 class Settings(BaseModel):
     authjwt_secret_key: str = "secret"
     # Configure application to store and get JWT from cookies
-    # authjwt_token_location: set = {"cookies"}
+    authjwt_token_location: set = {"cookies"}
     # Only allow JWT cookies to be sent over https
-    # authjwt_cookie_secure: bool = False
+    authjwt_cookie_secure: bool = True
     # Enable csrf double submit protection. default is True
-    # authjwt_cookie_csrf_protect: bool = True
+    authjwt_cookie_csrf_protect: bool = False
     # Change to 'lax' in production to make your website more secure from CSRF Attacks, default is None
-    # authjwt_cookie_samesite: str = 'lax'
+    authjwt_cookie_samesite: str = 'none'
 
 # callback to get your configuration
 @AuthJWT.load_config
@@ -50,6 +50,7 @@ def get_config():
 # in production, you can tweak performance using orjson response
 @app.exception_handler(AuthJWTException)
 def authjwt_exception_handler(request: Request, exc: AuthJWTException):
+    print("error occured")
     return JSONResponse(
         status_code=exc.status_code,
         content={"detail": exc.message}
@@ -66,8 +67,10 @@ def login(user: User, Authorize: AuthJWT = Depends()):
     # subject identifier for who this token is for example id or username from database
     access_token = Authorize.create_access_token(subject=user.username)
 
+    print("log in")
+
     # Set the JWT cookies in the response
-    # Authorize.set_access_cookies(access_token)
+    Authorize.set_access_cookies(access_token)
     return access_token
 
 
@@ -80,6 +83,9 @@ def logout(Authorize: AuthJWT = Depends()):
     """
     Authorize.jwt_required()
 
+    print("log out")
+
+    Authorize.unset_jwt_cookies()
     return {"msg":"Successfully logout"}
 
 # protect endpoint with function jwt_required(), which requires
@@ -87,6 +93,8 @@ def logout(Authorize: AuthJWT = Depends()):
 @app.get('/user')
 def user(Authorize: AuthJWT = Depends()):
     Authorize.jwt_required()
+
+    print("call user")
 
     current_user = Authorize.get_jwt_subject()
     return {"user": current_user}
