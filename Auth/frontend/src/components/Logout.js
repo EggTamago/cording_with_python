@@ -7,23 +7,20 @@ import { UserContext } from '../context/UserContext'
 
 const Logout = () => {
 
-    const { token, setToken } = useContext(UserContext)
+    const { auth, setAuth } = useContext(UserContext)
 
 
 
     const handleLogout = async (e) => {
         e.preventDefault()
         const logoutAPI = 'http://127.0.0.1:4040/logout'
-        console.log(token)
-
         await axios.delete(logoutAPI,
             {
                 headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    'Content-Type': 'application/json'
                 }
             })
-            .then(res => setToken(null))
+            .then(res => setAuth(!auth))
             .catch(console.error)
     }
     return (

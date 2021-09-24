@@ -15,7 +15,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { UserContext } from '../context/UserContext'
-import { useCookies } from 'react-cookie'
 
 axios.defaults.withCredentials = true
 
@@ -39,14 +38,8 @@ const Login = () => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [cookie, setCookie] = useCookies(["jwt"])
 
-    const { setToken } = useContext(UserContext)
-
-    const setResponse = (res) => {
-        setToken(res.data)
-        setCookie("jwt", res.data, { path: '/', httpOnly: true })
-    }
+    const { auth, setAuth } = useContext(UserContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -55,7 +48,7 @@ const Login = () => {
         await axios.post(loginAPI, data, {
             headers: { 'Content-Type': 'application/json' }
         })
-            .then(res => setResponse(res))
+            .then(setAuth(!auth))
             .catch(console.error)
     }
 

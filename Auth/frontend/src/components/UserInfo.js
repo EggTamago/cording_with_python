@@ -1,15 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Button from '@material-ui/core/Button';
 
 import axios from 'axios'
 
-import { UserContext } from '../context/UserContext'
-
 axios.defaults.withCredentials = true
 
 const UserInfo = () => {
-
-    const { token } = useContext(UserContext)
 
     const handleGetUserInfo = async (e) => {
         e.preventDefault()

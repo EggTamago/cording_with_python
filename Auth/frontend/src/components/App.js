@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { CookiesProvider } from 'react-cookie'
 
 import Login from "./Login"
 import Home from './Home'
@@ -13,14 +12,14 @@ const App = () => {
     password: "test"
   }
 
-  const { token } = useContext(UserContext)
+  const { auth } = useContext(UserContext)
 
   return (
-    <CookiesProvider>
-      {(token == null) ? (
-        <Login />
-      ) : (
+    <>
+      {(auth) ? (
         <Home />
+      ) : (
+        <Login />
       )}
 
 
@@ -28,7 +27,7 @@ const App = () => {
           <Route exact path='/' component={Login} />
           <Route path='/home' component={Home} />
         </Switch>} */}
-    </CookiesProvider>
+    </>
   )
 }
 
