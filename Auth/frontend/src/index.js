@@ -8,9 +8,7 @@ import reportWebVitals from './reportWebVitals'
 
 render(
   <UserProvider>
-    <Router>
-      <App />
-    </Router>
+    <App />
   </UserProvider>,
   document.getElementById('root')
 )

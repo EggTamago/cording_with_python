@@ -10,13 +10,7 @@ import UserInfo from './UserInfo'
 
 const Home = () => {
     return (
-        <>
-            <Switch>
-                <Route exact path='/' component={Test} />
-                <Route exact path='/test1' component={Test1} />
-                <Route exact path='/test2' component={Test2} />
-            </Switch>
-        </>
+        <div><h1>Hello home</h1></div>
     )
 }
 
