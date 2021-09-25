@@ -7,11 +7,6 @@ import { UserContext } from '../context/UserContext'
 
 const App = () => {
 
-  const adminUser = {
-    username: "test",
-    password: "test"
-  }
-
   const { auth } = useContext(UserContext)
 
   return (

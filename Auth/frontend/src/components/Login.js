@@ -39,7 +39,7 @@ const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const { auth, setAuth } = useContext(UserContext)
+    const { setAuth, loginFailure, setLoginFailure } = useContext(UserContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,8 +48,8 @@ const Login = () => {
         await axios.post(loginAPI, data, {
             headers: { 'Content-Type': 'application/json' }
         })
-            .then(setAuth(!auth))
-            .catch(console.error)
+            .then(response => setAuth(true))
+            .catch(setLoginFailure(true))
     }
 
     return (
@@ -70,6 +70,7 @@ const Login = () => {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
+
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"

@@ -71,7 +71,7 @@ def login(user: User, Authorize: AuthJWT = Depends()):
 
     # Set the JWT cookies in the response
     Authorize.set_access_cookies(access_token)
-    return access_token
+    return {"access_token":access_token}
 
 
 @app.delete('/logout')

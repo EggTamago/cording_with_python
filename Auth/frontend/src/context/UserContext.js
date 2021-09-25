@@ -4,15 +4,15 @@ export const UserContext = createContext()
 
 const UserProvider = ({ children }) => {
 
-    const [token, setToken] = useState()
     const [auth, setAuth] = useState(false)
+    const [loginFailure, setLoginFailure] = useState(false)
 
     useEffect(() => {
-        console.log({ token })
-    }, [token])
+        console.log({ auth })
+    }, [auth])
 
     return (
-        <UserContext.Provider value={{ token, setToken, auth, setAuth }}>
+        <UserContext.Provider value={{ auth, setAuth, loginFailure, setLoginFailure }}>
             {children}
         </UserContext.Provider>
     );
