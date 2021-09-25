@@ -45,6 +45,7 @@ const Login = () => {
 
     const handleSuccess = () => {
         setAuth(true)
+        setLoginFailure(false)
         setCount(0)
     }
 

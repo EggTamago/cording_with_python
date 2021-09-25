@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 import axios from 'axios'
@@ -7,9 +8,7 @@ import { UserContext } from '../context/UserContext'
 
 const Logout = () => {
 
-    const { auth, setAuth } = useContext(UserContext)
-
-
+    const { setAuth } = useContext(UserContext)
 
     const handleLogout = async (e) => {
         e.preventDefault()
@@ -20,8 +19,9 @@ const Logout = () => {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(res => setAuth(!auth))
+            .then(res => setAuth(false))
             .catch(console.error)
+
     }
     return (
 
