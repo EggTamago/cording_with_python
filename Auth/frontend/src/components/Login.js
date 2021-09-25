@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { UserContext } from '../context/UserContext'
 
+import Users from './Users'
 import LoginFailure from '../components/LoginFailure'
 
 axios.defaults.withCredentials = true
@@ -45,6 +46,7 @@ const Login = () => {
 
     const handleSuccess = () => {
         setAuth(true)
+        Users.isLoggedIn = true
         setLoginFailure(false)
         setCount(0)
     }

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 
-import { UserContext } from '../context/UserContext';
+import Users from './Users'
 
-const Auth = (props) => {
+const Auth = (props) => (
 
-    const { auth } = useContext(UserContext)
-        (auth) ? props.children : <Redirect to="/login" />
-}
+    Users.isLoggedIn ? props.children : <Redirect to="/login" />
+
+)
 
 export default Auth
