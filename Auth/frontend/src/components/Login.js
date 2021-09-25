@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { UserContext } from '../context/UserContext'
 
+import LoginFailure from '../components/LoginFailure'
+
 axios.defaults.withCredentials = true
 
 function Copyright(props) {
@@ -39,7 +41,17 @@ const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const { setAuth, loginFailure, setLoginFailure } = useContext(UserContext)
+    const { setAuth, loginFailure, setLoginFailure, count, setCount } = useContext(UserContext)
+
+    const handleSuccess = () => {
+        setAuth(true)
+        setCount(0)
+    }
+
+    const handleFailure = () => {
+        setLoginFailure(true)
+        setCount(count + 1)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,8 +60,8 @@ const Login = () => {
         await axios.post(loginAPI, data, {
             headers: { 'Content-Type': 'application/json' }
         })
-            .then(response => setAuth(true))
-            .catch(setLoginFailure(true))
+            .then(response => handleSuccess())
+            .catch(response => handleFailure())
     }
 
     return (
@@ -70,7 +82,9 @@ const Login = () => {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-
+                    {(loginFailure) ?
+                        (<LoginFailure />)
+                        : <> </>}
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
