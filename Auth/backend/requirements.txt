@@ -4,3 +4,4 @@ passlib
 SQLAlchemy
 pyjwt
 fastapi-jwt-auth
+psycopg2
