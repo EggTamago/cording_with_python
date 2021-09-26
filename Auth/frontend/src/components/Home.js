@@ -1,16 +1,19 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
-import Test from '../pages/Test'
-import Test1 from '../pages/Test1'
-import Test2 from '../pages/Test2'
+import { Link } from 'react-router-dom'
 
 import Logout from './Logout'
 import UserInfo from './UserInfo'
 
 const Home = () => {
     return (
-        <div><h1>Hello home</h1></div>
+        <div>
+            <h1>Hello home</h1>
+            <Link to="/test">test</Link>
+            <Link to="/test1">test1</Link>
+            <Link to="/test2">test2</Link>
+            <Logout />
+            <UserInfo />
+        </div >
     )
 }
 

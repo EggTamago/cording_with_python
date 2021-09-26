@@ -3,33 +3,33 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 
 import { UserContext } from '../context/UserContext'
 
-import Auth from './Auth'
 import Login from "./Login"
 import Home from './Home'
 import Test from '../pages/Test'
 import Test1 from '../pages/Test1'
 import Test2 from '../pages/Test2'
 
-
-
 const App = () => {
+
+  const { auth } = useContext(UserContext)
 
   return (
 
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
-        <Auth>
+        {(auth) ?
           <Switch>
-            <Route exact path="home" component={Home} />
-            <Route exact path="test" component={Test} />
-            <Route exact path="test1" component={Test1} />
-            <Route exact path="test2" component={Test2} />
+            <Route path="/home" component={Home} />
+            <Route path="/test" component={Test} />
+            <Route path="/test1" component={Test1} />
+            <Route path="/test2" component={Test2} />
           </Switch>
-        </Auth>
+          :
+          <Redirect to="/login" />
+        }
       </Switch>
     </Router>
-
   )
 }
 

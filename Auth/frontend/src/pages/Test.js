@@ -7,9 +7,10 @@ import UserInfo from '../components/UserInfo'
 const Test = () => {
     return (
         <div>
-            <h1>Hello this is test</h1>
-            <Link to="test1"> Test1 </Link>
-            <Link to="test2"> Test2 </Link>
+            <h1>Hello test</h1>
+            <Link to="/test">test</Link>
+            <Link to="/test1">test1</Link>
+            <Link to="/test2">test2</Link>
             <Logout />
             <UserInfo />
         </div>

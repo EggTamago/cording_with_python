@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { withRouter } from 'react-router';
 import axios from 'axios'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -16,7 +17,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { UserContext } from '../context/UserContext'
 
-import Users from './Users'
 import LoginFailure from '../components/LoginFailure'
 
 axios.defaults.withCredentials = true
@@ -37,7 +37,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-const Login = () => {
+const Login = (props) => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -46,7 +46,7 @@ const Login = () => {
 
     const handleSuccess = () => {
         setAuth(true)
-        Users.isLoggedIn = true
+        props.history.push("/home")
         setLoginFailure(false)
         setCount(0)
     }
@@ -143,4 +143,4 @@ const Login = () => {
     );
 }
 
-export default Login
+export default withRouter(Login)

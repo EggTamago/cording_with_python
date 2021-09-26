@@ -10,6 +10,8 @@ const Logout = () => {
     const { setAuth } = useContext(UserContext)
 
     const handleLogout = async (e) => {
+
+
         e.preventDefault()
         const logoutAPI = 'http://127.0.0.1:4040/logout'
         await axios.delete(logoutAPI,
