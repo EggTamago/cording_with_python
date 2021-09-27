@@ -56,6 +56,17 @@ def authjwt_exception_handler(request: Request, exc: AuthJWTException):
         content={"detail": exc.message}
     )
 
+# register user name and password
+@app.post('/register')
+def register(user: User, Authorize: AuthJWT = Depends()):
+    # check input data from web app
+    name = user.name
+    password = user.password
+    # register name and password
+
+    # return success to register 
+    return {"register success"}
+
 # provide a method to create access tokens. The create_access_token()
 # function is used to actually generate the token to use authorization
 # later in endpoint protected
