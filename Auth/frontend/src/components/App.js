@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { UserContext } from '../context/UserContext'
 
 import Login from "./Login"
+import Register from './Register'
 import Home from './Home'
 import Test from '../pages/Test'
 import Test1 from '../pages/Test1'
@@ -15,17 +16,20 @@ const App = () => {
 
   return (
     <Router>
-      <Route path="/login" component={Login} />
-      {(auth) ?
-        <Switch>
-          <Route path="/home" component={Home} />
-          <Route path="/test" component={Test} />
-          <Route path="/test1" component={Test1} />
-          <Route path="/test2" component={Test2} />
-        </Switch>
-        :
-        <Redirect to="/login" />
-      }
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        {(auth) ?
+          <Switch>
+            <Route path="/home" component={Home} />
+            <Route path="/test" component={Test} />
+            <Route path="/test1" component={Test1} />
+            <Route path="/test2" component={Test2} />
+          </Switch>
+          :
+          <Redirect to="/login" />
+        }
+      </Switch>
     </Router>
   )
 }

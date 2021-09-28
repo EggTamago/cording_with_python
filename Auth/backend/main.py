@@ -58,11 +58,20 @@ def authjwt_exception_handler(request: Request, exc: AuthJWTException):
 
 # register user name and password
 @app.post('/register')
-def register(user: User, Authorize: AuthJWT = Depends()):
+def register(register: User, Authorize: AuthJWT = Depends()):
     # check input data from web app
-    name = user.name
-    password = user.password
-    # register name and password
+    name = register.name
+    password = register.password
+
+    # 登録済のnameがあればreturn
+
+    # なければpasswordをhash化して登録
+    # passwordに登録日付の末尾３桁取得してhashしてhashした番号を登録
+
+    # 無事登録出来たらreturn success
+
+    
+
 
     # return success to register 
     return {"register success"}
