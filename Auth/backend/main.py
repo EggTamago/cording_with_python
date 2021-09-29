@@ -8,6 +8,12 @@ from fastapi_jwt_auth.exceptions import AuthJWTException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from database import db_session, engine
+import models
+
+# ここでDB初期化(Baseを継承したclass tableを作成する)
+models.Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
 """ start CORS measures"""
 origins = [
