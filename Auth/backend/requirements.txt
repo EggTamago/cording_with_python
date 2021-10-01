@@ -5,3 +5,7 @@ SQLAlchemy
 pyjwt
 fastapi-jwt-auth
 psycopg2
+autopep8
+flake8
+pytest
+ pydantic 
