@@ -51,8 +51,8 @@ const TimeLineChart = () => {
 
     return (
         <LineChart
-            width={500}
-            height={300}
+            width={1500}
+            height={800}
             data={sampleData}
             margin={{
                 top: 5,

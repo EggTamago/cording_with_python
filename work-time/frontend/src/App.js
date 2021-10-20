@@ -10,14 +10,15 @@ import TimeLineChart from './components/TimeLineChart'
 const App = () => {
   return (
     <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid container rowSpacing={5} columnSpacing={{ xs: 1, sm: 2, md: 3 }} justifyContent="center" spacing={2}>
         <Grid item xs={12}>
-          <Header />
+          <span className="App-header"><Header /></span>
         </Grid>
+
         <Grid item xs={2}>
-          <Checkbox />
+          <span className="App-checkbox"><Checkbox /></span>
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={9}>
           <TimeLineChart />
         </Grid>
       </Grid>
