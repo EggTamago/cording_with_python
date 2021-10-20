@@ -14,7 +14,6 @@ const App = () => {
         <Grid item xs={12}>
           <span className="App-header"><Header /></span>
         </Grid>
-
         <Grid item xs={2}>
           <span className="App-checkbox"><Checkbox /></span>
         </Grid>

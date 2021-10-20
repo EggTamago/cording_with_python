@@ -1,56 +1,44 @@
 import React from 'react'
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const sampleData = [
     {
-        name: 'Page A',
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
+        name: '1',
+        day: 8,
+        sum: 8,
     },
     {
-        name: 'Page B',
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
+        name: '2',
+        day: 10,
+        sum: 18,
     },
     {
-        name: 'Page C',
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
+        name: '3',
+        day: 10,
+        sum: 28,
     },
     {
-        name: 'Page D',
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
+        name: '4',
+        day: 0,
+        sum: 28,
     },
     {
-        name: 'Page E',
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
+        name: '5',
+        day: 11,
+        sum: 39,
     },
     {
-        name: 'Page F',
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-    },
-    {
-        name: 'Page G',
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
+        name: '6',
+        day: 12,
+        sum: 250,
     },
 ]
 
 const TimeLineChart = () => {
 
     return (
-        <LineChart
+        <ComposedChart
             width={1500}
             height={800}
             data={sampleData}
@@ -61,14 +49,21 @@ const TimeLineChart = () => {
                 bottom: 5,
             }}
         >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
+            <CartesianGrid stroke="#f5f5f5" />
+            <XAxis dataKey="name" padding={{ right: 50, left: 50 }} />
+            <YAxis yAxisId={1} label={{ value: "hours/day", angle: -90, dx: -20 }} />
+            <YAxis
+                yAxisId={2}
+                orientation="right"
+                domain={[0, 5]}
+                tickCount={6}
+                label={{ value: "sum", angle: -90, dx: 20 }}
+            />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-        </LineChart>
+            <Bar yAxisId={1} dataKey="day" barSize={20} fill="#413ea0" />
+            <Line yAxisId={2} type="monotone" dataKey="sum" stroke="#ff7300" />
+        </ComposedChart>
     )
 }
 
