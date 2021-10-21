@@ -18,7 +18,9 @@ const Checkbox = () => {
         console.log('get data')
     }, [check])
 
-    const handleCheckBox = async (e) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
         const server = 'http://127.0.0.1:4040/'
         await axios.get(server)
             .then(res => console.log(res))
@@ -26,18 +28,19 @@ const Checkbox = () => {
     }
 
     return (
-        <div>
-            {checkBoxList.map((key, index) =>
-                <table key={index}>
-                    <tbody>
-                        <tr>
-                            <th><input type="checkbox" onChange={handleCheckBox} value={key} /></th>
+        <form>
+            <table >
+                <tbody>
+                    {checkBoxList.map((key, index) =>
+                        <tr key={index}>
+                            <th><input type="radio" name="radio" /></th>
                             <td><label>{key}</label></td>
                         </tr>
-                    </tbody>
-                </table>
-            )}
-        </div>
+                    )}
+                </tbody>
+            </table>
+            <input type="submit" value="Submit" onClick={handleSubmit} />
+        </form>
     )
 }
 
