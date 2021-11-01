@@ -42,29 +42,3 @@ def get_actor_list(url, form):
     return_list = list(set(return_list))
     return return_list
 
-#
-# kawaii
-#
-
-# format: a, ka...
-# kawaii_url = 'https://www.kawaiikawaii.jp/actress/list/'
-
-
-
-
-#
-# moodyz
-#
-
-# format: a, i, u...
-# moodyz_url = 'https://www.moodyz.com/actress/list/'
-
-
-
-
-#
-# E-BODY
-#
-
-# format: a, ka...
-# ebody_url = 'https://www.av-e-body.com/actress/list/'
