@@ -10,7 +10,7 @@ import psycopg2
 from get_data import get_actor_list
 
 # s1 info
-s1_url = 'https://s1s1s1.com/actress/'
+
 form = ['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra', 'wa']
 s1_list = get_actor_list(s1_url, form)
 
